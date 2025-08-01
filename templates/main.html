@@ -162,6 +162,20 @@
         opacity: 0.1;
       }
     }
+    .ad-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    @media (max-width: 600px) {
+      .ad-container iframe {
+        width: 320px !important;
+        height: 50px !important;
+      }
+    }
+
     
   </style>
 </head>
@@ -186,16 +200,18 @@
       {{ innput|safe }}
       <button type="submit" class="submit-button">Submit</button>
     </form>
-        <script type="text/javascript">
-      atOptions = {
-        'key' : '29d203d117156ff711fd8dbf951e0bbb',
-        'format' : 'iframe',
-        'height' : 60,
-        'width' : 468,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/29d203d117156ff711fd8dbf951e0bbb/invoke.js"></script>
+    <div class="ad-container">
+      <script type="text/javascript">
+        atOptions = {
+          'key': '29d203d117156ff711fd8dbf951e0bbb',
+          'format': 'iframe',
+          'height': 60,
+          'width': 468,
+          'params': {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/29d203d117156ff711fd8dbf951e0bbb/invoke.js"></script>
+    </div>
   </div>
 </body>
 </html>
