@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Results</title>
+  <style>
+    body {
+      background-color: #fdf6e3; /* soft coffee beige */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      color: #4a3f35;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
+      background-color: #fff8e1;
+      padding: 20px 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      max-width: 600px;
+    }
+
+    .intro h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .intro p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .results-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 600px;
+      align-items: flex-start;
+    }
+
+    .result-box {
+      background-color: #ffffff;
+      color: #3e3027;
+      border: 2px solid #e0cda9;
+      border-radius: 12px;
+      padding: 20px 25px;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .result-box:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 15px rgba(255, 204, 102, 0.5);
+    }
+
+    .link-box {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+    }
+
+    .link-box a {
+      text-decoration: none;
+      background-color: #ffd966;
+      color: #4a3f35;
+      padding: 12px 28px;
+      border-radius: 24px;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, background-color 0.3s ease;
+    }
+
+    .link-box a:hover {
+      background-color: #ffcc33;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      .intro h1 {
+        font-size: 22px;
+      }
+
+      .result-box {
+        font-size: 16px;
+        padding: 18px 20px;
+      }
+
+      .link-box a {
+        font-size: 15px;
+        padding: 10px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="intro">
+    <h1>☕ Here are your results!</h1>
+    <p>
+      You've made it through, nicely done! Take a moment, sip some coffee, and review what you’ve achieved.  
+    </p>
+  </div>
+
+  <div class="results-container">
+    {% if result %}
+      {{ result|safe }}
+    {% endif %}
+  </div>
+
+  <div class="link-box">
+    <a href="https://coff.ee/choigun" target="_blank">Buy me a coffee!</a>
+  </div>
+</body>
+</html>
