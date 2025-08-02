@@ -133,18 +133,7 @@ def results():
 
     return render_template("results.html", result = results)
 
-@app.route('/sitemap.xml', methods=['GET'])
-def sitemap():
-    xml = '''<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://choistests.onrender.com</loc>
-    <lastmod>2025-08-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-</urlset>'''
-    return Response(xml, mimetype='application/xml')
+
 
 @app.route('/google9f8b8aeb83c75bc6.html', methods=['GET'])
 def sitemap():
@@ -153,5 +142,6 @@ def sitemap():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
 
