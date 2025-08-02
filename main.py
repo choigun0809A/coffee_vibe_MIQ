@@ -121,7 +121,7 @@ def home():
             string += "</div></div>"
             String += string
     
-    return render_template("google9f8b8aeb83c75bc6.html", innput=String)
+    return render_template("main.html", innput=String)
 
 
 @app.route("/results")
@@ -146,7 +146,12 @@ def sitemap():
 </urlset>'''
     return Response(xml, mimetype='application/xml')
 
+@app.route('/google9f8b8aeb83c75bc6.html', methods=['GET'])
+def sitemap():
+    return render_template("google9f8b8aeb83c75bc6.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
