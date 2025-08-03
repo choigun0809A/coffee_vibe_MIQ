@@ -153,8 +153,20 @@ def sitemap():
     return Response(xml, mimetype='application/xml')
 
 
+@app.route("/robots.txt")
+def robots():
+    robots_txt = '''User-agent: *
+Disallow:
+
+Sitemap: https://choistests.onrender.com/sitemap.xml
+'''
+    return Response(robots_txt, mimetype='text/plain')
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
+
 
 
 
