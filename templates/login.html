@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mafia Style Login Portal</title>
+    <style>
+        body {
+            background: linear-gradient(270deg, rgba(128, 0, 128, 0.8), rgba(255, 0, 0, 0.8), rgba(0, 0, 255, 0.8));
+            background-size: 300% 300%; /* For smooth animation */
+            animation: gradient 10s ease infinite; /* Animation for background */
+            color: #f5f5f5; /* Light text color */
+            font-family: 'Arial', sans-serif; /* Font style */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full height */
+            margin: 0;
+            overflow: hidden; /* Prevent scrollbars from appearing */
+            position: relative; /* For floating objects */
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating objects */
+        .floating-object {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        .object1 {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 0, 0, 0.5);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .object2 {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(0, 255, 0, 0.5);
+            top: 50%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .object3 {
+            width: 120px;
+            height: 120px;
+            background-color: rgba(0, 0, 255, 0.5);
+            bottom: 30%;
+            left: 30%;
+            animation-delay: 2s;
+        }
+
+        [name="screen"] {
+            background-color: rgba(50, 50, 50, 0.85); /* Semi-transparent dark gray */
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+            border: 2px solid #444;
+        }
+
+        [name="login"] {
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center;
+            justify-content: center;
+        }
+
+        [name="text-box"] {
+            background-color: rgba(40, 40, 40, 0.8);
+            border: 2px solid #666;
+            color: white; /* Text color */
+            padding: 10px; /* Padding inside the input */
+            border-radius: 5px; /* Rounded corners */
+            width: 80%; /* Width of the input */
+            margin-bottom: 15px; /* Space between input and button */
+            transition: border-color 0.3s; /* Smooth transition for border color */
+        }
+
+        [name="text-box"]:focus {
+            border-color: rgb(255, 0, 0); /* Change border color on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        [name="enter"] {
+            background-color: rgb(80, 40, 0); /* Dark orange-brown button */
+            color: white; /* Button text color */
+            border: none; /* Remove default border */
+            padding: 10px 20px; /* Padding inside the button */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s; /* Smooth transition for background color */
+        }
+
+        [name="enter"]:hover {
+            background-color: rgb(150, 80, 0);
+            text-shadow: 0 0 5px #fff;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            [name="text-box"], [name="enter"] {
+                width: 90%; /* Adjust width for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-object object1"></div>
+    <div class="floating-object object2"></div>
+    <div class="floating-object object3"></div>
+
+    <form method="post" name="login">
+        <input type="text" placeholder="Enter your name..." name="text-box" required>
+        <button type="submit" name="enter">Enter</button>
+    </form>
+</body>
+</html>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, Response
+from flask import Flask, render_template, request, redirect, Response, session
 
 
 miq = {
@@ -82,7 +82,7 @@ scores = {}
 
 app = Flask(__name__)
 
-@app.route("/", methods = ["GET", "POST"])
+@app.route("/MIQ", methods = ["GET", "POST"])
 def home():
 
     if request.method == "POST":
@@ -161,6 +161,118 @@ Disallow:
 Sitemap: https://choistests.onrender.com/sitemap.xml
 '''
     return Response(robots_txt, mimetype='text/plain')
+
+
+
+
+
+
+
+players = {}
+roles = ["killer", "medic", "silencer", "detective", "jester"]
+evil_roles = ["killer", "silencer", "jester"]
+message = ""
+
+
+@app.route('/mafia', methods = ["GET", "POST"])
+def home():
+    if request.method == "POST":
+        name = request.form["text-box"]
+
+        if name in players.keys() or name == "":
+            return render_template("login2.html")
+        else:
+            players[name] = {"isdead":False, "issilent": False, "role": "Civilian"}
+            session["player"] = name
+
+            print(f"player: {name} has joined the game.")
+            return redirect("/lobby")
+        
+    return render_template("login.html")
+
+@app.route("/mafia/lobby", methods = ["GET", "POST"])
+def lobby():
+    if session["player"] not in players:
+        return redirect("/")
+    names = list(players.keys())
+    step_1 = [f"<li class = '{"alive" if not players[name]["isdead"] else "dead"}' name = '{"notsilent" if not players[name]["issilent"] else "issilent"}'>{name}</li>" for pos, name in enumerate(names)]
+    print(players)
+    final = "<ul class='players'>" + "".join(step_1) + "</ul>"
+
+    global message
+    print(message)
+    print(session["player"])
+    if players[session["player"]]["role"] == "detective":
+        return render_template("players.html", final=final, role = players[session["player"]]["role"] , message = message)
+    else:
+        return render_template("players.html", final=final, role = players[session["player"]]["role"], message = "")
+
+
+@app.route("/mafia/roles")
+def _roles_():
+    names = list(players.keys())
+    step_1 = [f"<li class = '{players[name]["role"]}'>{f"player {name}'s role is {players[name]["role"]}"}</li>" for pos, name in enumerate(names)]
+    print(players)
+    final = "<ul class='players'>" + "".join(step_1) + "</ul>"
+    
+    return render_template("players_roles.html", final=final)
+
+import random as rand
+@app.route("/mafia/admin", methods=["GET", "POST"])
+def admin():
+    global players, roles, message
+    names = list(players.keys())
+
+    if request.method == "POST":
+
+        
+        
+        type_of_form = request.form.get("clicked")
+        for name in names:
+            players[name]["issilent"]=False
+
+        if type_of_form == "start":
+            for name in names:
+                players[name] = {"isdead": False, "issilent": False, "role": "Civilian"}
+            for role in roles:
+                name = rand.choice(names)
+                players[name]["role"] = role
+        if type_of_form == "kill":
+            try:
+                name = names[int(request.form.get("kill_pos"))-1]
+                players[name]["isdead"] = True
+            except:
+                pass
+        if type_of_form == "revive":
+            try:
+                name = names[int(request.form.get("revive_pos"))-1]
+                players[name]["isdead"] = False
+            except:
+                pass
+        if type_of_form == "remove":
+            try:
+                name = names[int(request.form.get("remove_pos"))-1]
+                players.pop(name)
+            except:
+                pass
+        if type_of_form == "silence":
+            try:
+                name = names[int(request.form.get("silence_pos"))-1]
+                players[name]["issilent"] = True
+            except:
+                pass
+        if type_of_form == "guess":
+            try:
+                name = names[int(request.form.get("guess_pos"))-1]
+                if players[name]["role"] in evil_roles:
+                    message += f"<p>player {name} is evil</p>"
+                else:
+                    message += f"<p>player {name} is good</p>"
+            except:
+                pass
+
+    return render_template("admin.html")
+
 
 
 
