@@ -164,7 +164,7 @@ Sitemap: https://choistests.onrender.com/sitemap.xml
 
 
 
-
+app.secret_key = 'mfchoi'
 
 
 
