@@ -82,7 +82,7 @@ scores = {}
 
 app = Flask(__name__)
 
-@app.route("/MIQ", methods =['GET', 'POST'])
+@app.route("/", methods =['GET', 'POST'])
 def MIQ():
 
     if request.method == "POST":
