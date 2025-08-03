@@ -82,8 +82,8 @@ scores = {}
 
 app = Flask(__name__)
 
-@app.route("/MIQ", methods = ["GET", "POST"])
-def home():
+@app.route("/MIQ", methods =['GET', 'POST'])
+def MIQ():
 
     if request.method == "POST":
         for key in keys:
@@ -174,8 +174,8 @@ evil_roles = ["killer", "silencer", "jester"]
 message = ""
 
 
-@app.route('/mafia', methods = ["GET", "POST"])
-def home():
+@app.route('/mafia', methods = ['GET', 'POST'])
+def mafia():
     if request.method == "POST":
         name = request.form["text-box"]
 
@@ -190,7 +190,7 @@ def home():
         
     return render_template("login.html")
 
-@app.route("/mafia/lobby", methods = ["GET", "POST"])
+@app.route("/mafia/lobby", methods = ['GET', 'POST'])
 def lobby():
     if session["player"] not in players:
         return redirect("/mafia")
@@ -218,7 +218,7 @@ def _roles_():
     return render_template("players_roles.html", final=final)
 
 import random as rand
-@app.route("/mafia/admin", methods=["GET", "POST"])
+@app.route("/mafia/admin", methods=['GET', 'POST'])
 def admin():
     global players, roles, message
     names = list(players.keys())
