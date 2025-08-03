@@ -186,14 +186,14 @@ def home():
             session["player"] = name
 
             print(f"player: {name} has joined the game.")
-            return redirect("/lobby")
+            return redirect("/mafia/lobby")
         
     return render_template("login.html")
 
 @app.route("/mafia/lobby", methods = ["GET", "POST"])
 def lobby():
     if session["player"] not in players:
-        return redirect("/")
+        return redirect("/mafia")
     names = list(players.keys())
     step_1 = [f"<li class = '{"alive" if not players[name]["isdead"] else "dead"}' name = '{"notsilent" if not players[name]["issilent"] else "issilent"}'>{name}</li>" for pos, name in enumerate(names)]
     print(players)
