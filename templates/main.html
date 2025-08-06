@@ -185,8 +185,63 @@
       }
     }
 
+    .topbar {
+  background-color: #f3e5d2;
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.topbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.topbar .logo {
+  font-family: 'DM Serif Text', serif;
+  font-size: 24px;
+  color: #5b4636;
+}
+
+.nav-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #7b6651;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #b98d6e;
+}
+
+@media (max-width: 600px) {
+  .topbar-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    margin-top: 10px;
+  }
+
+  .nav-links a {
+    margin: 8px 0;
+    display: block;
+  }
+}
+
+
     
   </style>
+  
   <link rel="icon" href="/static/favicon.png" type="image/png">
 
 
@@ -221,6 +276,18 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
+  <div class="topbar">
+    <div class="topbar-content">
+      <span class="logo">☕ Choistests</span>
+      <nav class="nav-links">
+        <a href="/home">Home</a>
+        <a href="/about">About</a>
+        <a href="/mafia">Mafia Game</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+
   <!-- Floating Emoji Background -->
   <div class="emoji-container">
     <div class="emoji" style="top: 15%; left: 25%; animation-delay: 0s;">☕</div>

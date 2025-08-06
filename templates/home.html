@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ChoisTests</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+    }
+
+    /* NavBar */
+    .navbar {
+      background-color: #333;
+      padding: 1em;
+      color: white;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    /* Layout container */
+    .container {
+      display: flex;
+      padding: 2em;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Left buttons */
+    .buttons {
+      flex: 1;
+      min-width: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
+
+    .buttons button {
+      padding: 0.8em;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .buttons button:hover {
+      background-color: #45a049;
+    }
+
+    /* Right descriptions */
+    .descriptions {
+      flex: 2;
+      min-width: 220px;
+      padding-left: 2em;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+    }
+
+    .desc-box {
+      background: white;
+      padding: 1em;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      width: 280px;
+      height: 280px; /* Nearly quadratic */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .desc-box:hover {
+      transform: scale(1.03);
+    }
+
+    @media screen and (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .descriptions {
+        padding-left: 0;
+      }
+    }
+  </style>
+  <link rel="icon" href="/static/favicon.png" type="image/png">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    Choigun’s Test Platform
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <div class="buttons">
+      <button onclick="showDesc(0)">Alphabet Game</button>
+      <button onclick="showDesc(1)">Morse Trainer</button>
+      <button onclick="showDesc(2)">Intelligence Quiz</button>
+    </div>
+
+    <div class="descriptions">
+      <div class="desc-box" id="descBox">
+        Select a test from the left to see its description.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const descriptions = [
+      "Learn the English alphabet through a fun interactive game. Perfect for kids and beginners.",
+      "Master Morse Code through randomized practice. Translate and improve your speed!",
+      "Discover your dominant intelligences with a coffee-themed fun quiz."
+    ];
+
+    function showDesc(index) {
+      document.getElementById("descBox").innerText = descriptions[index];
+    }
+  </script>
+
+</body>
+</html>
