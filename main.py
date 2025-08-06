@@ -282,7 +282,7 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/favicon")
+@app.route("/favicon.png")
 def fav():
     return render_template("favicon.html")
 
