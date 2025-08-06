@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, Response, session
+from flask import Flask, render_template, request, redirect, Response, session, send_from_directory
 
 
 miq = {
@@ -285,9 +285,10 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/favicon.png")
-def fav():
-    return render_template("favicon.html")
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory('static', 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 if __name__ == "__main__":
