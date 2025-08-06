@@ -283,8 +283,8 @@ def home():
 
 
 @app.route("/favicon")
-def home():
-    return render_template("home.html")
+def fav():
+    return render_template("favicon.html")
 
 
 if __name__ == "__main__":
