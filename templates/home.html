@@ -6,46 +6,45 @@
   <title>ChoisTests</title>
   <style>
     body {
-      background: linear-gradient(to bottom, #fef8f3, #f7eee6);
-      font-family: 'Quicksand', sans-serif;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
+    background: linear-gradient(to bottom, #fef8f3, #f7eee6);
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
 
-    .emoji-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
+  .emoji-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+  }
 
-    .emoji {
-      position: absolute;
-      font-size: 2.5rem;
-      opacity: 0.15;
-      animation: floaty 30s infinite ease-in-out;
-    }
+  .emoji {
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0.15;
+    animation: floaty 30s infinite ease-in-out;
+  }
 
-    @keyframes floaty {
-      0%   { transform: translateY(0) rotate(0deg); }
-      50%  { transform: translateY(-40px) rotate(360deg); }
-      100% { transform: translateY(0) rotate(0deg); }
-    }
+  @keyframes floaty {
+    0%   { transform: translateY(0) rotate(0deg); }
+    50%  { transform: translateY(-40px) rotate(360deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+  }
 
-    .topbar {
+  .topbar {
     background-color: #f3e5d2;
     padding: 10px 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    position: fixed; /* <--- changed from sticky to fixed */
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 999;
   }
-
 
   .topbar-content {
     display: flex;
@@ -74,25 +73,77 @@
     color: #b98d6e;
   }
 
-@media (max-width: 600px) {
-  .topbar-content {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .nav-links {
+  .tools {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 0;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    margin: 100px auto 0 10%; /* added top space for the fixed topbar */
   }
 
-  .nav-links a {
-    margin: 0;
-    display: inline-block;
+  .tools a {
+    text-decoration: none;
+    color: inherit;
   }
-}
+
+  /* Main box */
+  .insides {
+    display: flex;
+    align-items: center;
+    background: #f3e5d2;
+    color: #5b4636;
+    border-radius: 12px;
+    padding: 16px;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .insides:hover {
+    transform: scale(1.02);
+  }
+
+  /* Image */
+  .insides img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 16px;
+    border-radius: 8px;
+  }
+
+  /* Description */
+  .insides p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .topbar-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .insides {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .insides img {
+      margin: 0 0 10px 0;
+    }
+
+  }
+
   </style>
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
@@ -138,6 +189,19 @@
     <div class="emoji" style="top: 60%; left: 60%; animation-delay: 0s;">🪴</div>
   </div>
 
+  <div class="tools">
+    <a href="/">
+      <div class="insides">
+        <img src="static/MIQ_img.png" alt="Multiple Intelligence Quiz">
+        <p>
+          Try out our multiple intelligence quiz with 56 questions. This test determines what type of intelligence is the most dominant to you.
+        </p>
+      </div>
+    </a>
+  </div>
+
+
+  
   
 
 
