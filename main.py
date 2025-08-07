@@ -291,6 +291,10 @@ def favicon():
     return send_from_directory('static', 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
+@app.route('/ads.txt')
+def ads_txt():
+    return send_from_directory('static', 'ads.txt')
+
 if __name__ == "__main__":
     app.run()
 
