@@ -295,6 +295,40 @@ def favicon():
 def ads_txt():
     return send_from_directory('static', 'ads.txt')
 
+input_types_and_funcs = {
+    "usd_to_eur": lambda x: float(x) * 0.92,        
+    "eur_to_usd": lambda x: float(x) * 1.09,
+    "usd_to_jpy": lambda x: float(x) * 155.0,
+    "usd_to_gbp": lambda x: float(x) * 0.78,
+    "mb_to_kb": lambda x: float(x) * 1024,
+    "gb_to_mb": lambda x: float(x) * 1024,
+    "bit_to_byte": lambda x: float(x) / 8,
+    "tbsp_to_tsp": lambda x: float(x) * 3,
+    "cup_to_oz": lambda x: float(x) * 8,
+    "oz_to_gram": lambda x: float(x) * 28.3495,
+    "hp_to_kw": lambda x: float(x) * 0.7457,
+    "psi_to_bar": lambda x: float(x) * 0.0689476,
+    "mph_to_kph": lambda x: float(x) * 1.60934
+}
+
+@app.route("/converter", methods=['GET', 'POST'])
+def converter():
+    if request.method == "POST":
+        input_type = request.form.get("input_type")
+        returning_str = ""
+
+        try:
+            input_value = int(request.form.get("input_value"))
+            global input_types_and_funcs
+            returning_str = f"<p class = 'plus'>{str(input_types_and_funcs[input_type](input_value))}</p>"
+            
+        except:
+            returning_str = f"<p class = 'neg'>Invalid input value. Please enter a number.</p>"
+
+        
+        
+        return render_template("converter.html", output_value=returning_str)
+
 if __name__ == "__main__":
     app.run()
 
