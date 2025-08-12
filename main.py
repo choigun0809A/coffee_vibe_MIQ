@@ -313,9 +313,10 @@ input_types_and_funcs = {
 
 @app.route("/converter", methods=['GET', 'POST'])
 def converter():
+    returning_str = ""
     if request.method == "POST":
         input_type = request.form.get("input_type")
-        returning_str = ""
+        
 
         try:
             input_value = int(request.form.get("input_value"))
@@ -328,6 +329,7 @@ def converter():
         
         
         return render_template("converter.html", output_value=returning_str)
+    return render_template("converter.html", output_value=returning_str)
 
 if __name__ == "__main__":
     app.run()
