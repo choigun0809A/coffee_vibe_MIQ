@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, Response, session, send_from_directory
-
+import static.tools as tools
 
 miq = {
     "linguistic": [
@@ -80,30 +80,43 @@ keys = list(miq.keys())
 scores = {}
 
 
+
 app = Flask(__name__)
 
+
 @app.route("/", methods =['GET', 'POST'])
-def MIQ():
+def MIQ_by_choi():
 
     if request.method == "POST":
+        questions: dict[str, dict[str, int]] = {}
+
         for key in keys:
-            
+            questions[key] = {}
             max_score = len(miq[key])*2
             score = max_score
             max_score *= 2
             
             for num in range(len(miq[key])):
                 ans = request.form.get(key + str(num))
+                
+                
+                
 
                 if ans != None:
                     ans = int(ans)
                     score += ans 
+                    questions[key][miq[key][num]] = ans
+                else:
+                    questions[key][miq[key][num]] = 0
             percentage = (score / max_score) * 100
             scores[key] = round(percentage, 3)
-        
+
+        tools.upload(questions)
         for key in keys:
             print(f"{key} intelligence: {scores[key]}%")
         return redirect("/results")
+
+
                 
 
     String = ""
@@ -121,7 +134,7 @@ def MIQ():
             string += "</div></div>"
             String += string
     
-    return render_template("main.html", innput=String)
+    return render_template("MIQ_by_Choi.html", innput=String)
 
 
 @app.route("/results")
@@ -166,126 +179,6 @@ Sitemap: https://choistests.onrender.com/sitemap.xml
     return Response(robots_txt, mimetype='text/plain')
 
 
-
-app.secret_key = 'mfchoi'
-
-
-
-players = {}
-roles = ["killer", "medic", "silencer", "detective", "jester"]
-evil_roles = ["killer", "silencer", "jester"]
-message = ""
-
-
-@app.route('/mafia', methods = ['GET', 'POST'])
-def mafia():
-    if request.method == "POST":
-        name = request.form["text-box"]
-
-        if name in players.keys() or name == "":
-            return render_template("login2.html")
-        else:
-            players[name] = {"isdead":False, "issilent": False, "role": "Civilian"}
-            session["player"] = name
-
-            print(f"player: {name} has joined the game.")
-            return redirect("/mafia/lobby")
-        
-    return render_template("login.html")
-
-@app.route("/mafia/lobby", methods = ['GET', 'POST'])
-def lobby():
-    if session["player"] not in players:
-        return redirect("/mafia")
-    names = list(players.keys())
-    step_1 = [f"<li class = '{"alive" if not players[name]["isdead"] else "dead"}' name = '{"notsilent" if not players[name]["issilent"] else "issilent"}'>{name}</li>" for pos, name in enumerate(names)]
-    print(players)
-    final = "<ul class='players'>" + "".join(step_1) + "</ul>"
-
-    global message
-    print(message)
-    print(session["player"])
-    if players[session["player"]]["role"] == "detective":
-        return render_template("players.html", final=final, role = players[session["player"]]["role"] , message = message)
-    else:
-        return render_template("players.html", final=final, role = players[session["player"]]["role"], message = "")
-
-
-@app.route("/mafia/roles")
-def _roles_():
-    names = list(players.keys())
-    step_1 = [f"<li class = '{players[name]["role"]}'>{f"player {name}'s role is {players[name]["role"]}"}</li>" for pos, name in enumerate(names)]
-    print(players)
-    final = "<ul class='players'>" + "".join(step_1) + "</ul>"
-    
-    return render_template("players_roles.html", final=final)
-
-import random as rand
-@app.route("/mafia/admin", methods=['GET', 'POST'])
-def admin():
-    global players, roles, message
-    names = list(players.keys())
-
-    if request.method == "POST":
-
-        
-        
-        type_of_form = request.form.get("clicked")
-        for name in names:
-            players[name]["issilent"]=False
-
-        if type_of_form == "start":
-            for name in names:
-                players[name] = {"isdead": False, "issilent": False, "role": "Civilian"}
-            for role in roles:
-                name = rand.choice(names)
-                players[name]["role"] = role
-        if type_of_form == "kill":
-            try:
-                name = names[int(request.form.get("kill_pos"))-1]
-                players[name]["isdead"] = True
-            except:
-                pass
-        if type_of_form == "revive":
-            try:
-                name = names[int(request.form.get("revive_pos"))-1]
-                players[name]["isdead"] = False
-            except:
-                pass
-        if type_of_form == "remove":
-            try:
-                name = names[int(request.form.get("remove_pos"))-1]
-                players.pop(name)
-            except:
-                pass
-        if type_of_form == "silence":
-            try:
-                name = names[int(request.form.get("silence_pos"))-1]
-                players[name]["issilent"] = True
-            except:
-                pass
-        if type_of_form == "guess":
-            try:
-                name = names[int(request.form.get("guess_pos"))-1]
-                if players[name]["role"] in evil_roles:
-                    message += f"<p>player {name} is evil</p>"
-                else:
-                    message += f"<p>player {name} is good</p>"
-            except:
-                pass
-
-    return render_template("admin.html")
-
-
-
-
-
-@app.route("/home")
-def home():
-    return render_template("home.html")
-
-
-
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory('static', 'favicon.ico', mimetype='image/vnd.microsoft.icon')
@@ -294,42 +187,6 @@ def favicon():
 @app.route('/ads.txt')
 def ads_txt():
     return send_from_directory('static', 'ads.txt')
-
-input_types_and_funcs = {
-    "usd_to_eur": lambda x: float(x) * 0.92,        
-    "eur_to_usd": lambda x: float(x) * 1.09,
-    "usd_to_jpy": lambda x: float(x) * 155.0,
-    "usd_to_gbp": lambda x: float(x) * 0.78,
-    "mb_to_kb": lambda x: float(x) * 1024,
-    "gb_to_mb": lambda x: float(x) * 1024,
-    "bit_to_byte": lambda x: float(x) / 8,
-    "tbsp_to_tsp": lambda x: float(x) * 3,
-    "cup_to_oz": lambda x: float(x) * 8,
-    "oz_to_gram": lambda x: float(x) * 28.3495,
-    "hp_to_kw": lambda x: float(x) * 0.7457,
-    "psi_to_bar": lambda x: float(x) * 0.0689476,
-    "mph_to_kph": lambda x: float(x) * 1.60934
-}
-
-@app.route("/converter", methods=['GET', 'POST'])
-def converter():
-    returning_str = ""
-    if request.method == "POST":
-        input_type = request.form.get("input_type")
-        
-
-        try:
-            input_value = int(request.form.get("input_value"))
-            global input_types_and_funcs
-            returning_str = f"<p class = 'plus'>{str(input_types_and_funcs[input_type](input_value))}</p>"
-            
-        except:
-            returning_str = f"<p class = 'neg'>Invalid input value. Please enter a number.</p>"
-
-        
-        
-        return render_template("converter.html", output_value=returning_str)
-    return render_template("converter.html", output_value=returning_str)
 
 if __name__ == "__main__":
     app.run()

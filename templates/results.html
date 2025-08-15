@@ -4,150 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Your Results</title>
-  <style>
-    body {
-      background-color: #fdf6e3;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      color: #4a3f35;
-      overflow-x: hidden;
-    }
-
-    /* Floating emojis */
-    .floating-emoji {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .emoji {
-      position: absolute;
-      font-size: 28px;
-      opacity: 0.7;
-      animation: floatUp linear infinite;
-    }
-
-    @keyframes floatUp {
-      0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-      30% {
-        opacity: 0.7;
-      }
-      100% {
-        transform: translateY(-10vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* Randomize positions and durations */
-    .emoji:nth-child(1) { left: 10%; animation-duration: 12s; }
-    .emoji:nth-child(2) { left: 25%; animation-duration: 15s; }
-    .emoji:nth-child(3) { left: 40%; animation-duration: 10s; }
-    .emoji:nth-child(4) { left: 60%; animation-duration: 18s; }
-    .emoji:nth-child(5) { left: 75%; animation-duration: 13s; }
-
-    .intro {
-      text-align: center;
-      margin-bottom: 30px;
-      background-color: #fff8e1;
-      padding: 20px 30px;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      max-width: 600px;
-      z-index: 1;
-    }
-
-    .intro h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-
-    .intro p {
-      font-size: 16px;
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .results-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      width: 100%;
-      max-width: 600px;
-      align-items: flex-start;
-      z-index: 1;
-    }
-
-    .result-box {
-      background-color: #ffffff;
-      color: #3e3027;
-      border: 2px solid #e0cda9;
-      border-radius: 12px;
-      padding: 20px 25px;
-      font-size: 18px;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .result-box:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 15px rgba(255, 204, 102, 0.5);
-    }
-
-    .link-box {
-      display: flex;
-      justify-content: center;
-      margin-top: 50px;
-      z-index: 1;
-    }
-
-    .link-box a {
-      text-decoration: none;
-      background-color: #ffd966;
-      color: #4a3f35;
-      padding: 12px 28px;
-      border-radius: 24px;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s ease, background-color 0.3s ease;
-    }
-
-    .link-box a:hover {
-      background-color: #ffcc33;
-      transform: scale(1.05);
-    }
-
-    @media (max-width: 600px) {
-      .intro h1 {
-        font-size: 22px;
-      }
-
-      .result-box {
-        font-size: 16px;
-        padding: 18px 20px;
-      }
-
-      .link-box a {
-        font-size: 15px;
-        padding: 10px 20px;
-      }
-    }
-  </style>
+  
+  <link rel="stylesheet" href="static/results.css">
+  
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
-  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="shortcut icon" href="static/favicon.ico">
+
 </head>
 <body>
   <!-- Floating Emoji Layer -->
@@ -162,7 +24,7 @@
   <div class="intro">
     <h1>☕ Here are your results!</h1>
     <p>
-      You've made it through, nicely done! Take a moment, sip some coffee, and review what you’ve achieved.  
+      You've made it through, nicely done! Take a moment, sip some coffee, and review what you’ve got.  
     </p>
   </div>
 
