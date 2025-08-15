@@ -3,7 +3,7 @@ import os, json
 from firebase_admin import credentials, firestore
 import random as rand
 
-key_dict = json.loads(os.environ['KEY'])
+key_dict = json.loads(os.environ['/etc/secrets/KEY'])
 cred = credentials.Certificate(key_dict)
 firebase_admin.initialize_app(cred)
 # type of intelligence: {question: answer}
