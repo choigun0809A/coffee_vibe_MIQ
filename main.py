@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, Response, session, send_from_directory
+from flask import Flask, render_template, request, redirect, Response, session, send_from_directory, send_file
 import static.tools as tools
 
 miq = {
@@ -99,8 +99,6 @@ def MIQ_by_choi():
             for num in range(len(miq[key])):
                 ans = request.form.get(key + str(num))
                 
-                
-                
 
                 if ans != None:
                     ans = int(ans)
@@ -146,7 +144,9 @@ def results():
 
     return render_template("results.html", result = results)
 
-
+@app.route("/download")
+def download():
+    return send_file('MIQ_by_Choi.csv', as_attachment=True)
 
 @app.route('/google9f8b8aeb83c75bc6.html', methods=['GET'])
 def google():
