@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, Response, session, send_from_directory
-import static.tools as tools
+# import static.tools as tools
 
 miq = {
     "linguistic": [
@@ -111,7 +111,7 @@ def MIQ_by_choi():
             percentage = (score / max_score) * 100
             scores[key] = round(percentage, 3)
 
-        tools.upload(questions)
+        # tools.upload(questions)
         for key in keys:
             print(f"{key} intelligence: {scores[key]}%")
         return redirect("/results")

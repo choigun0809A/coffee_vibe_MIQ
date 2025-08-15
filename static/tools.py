@@ -1,30 +1,30 @@
-import firebase_admin 
-from firebase_admin import credentials, firestore
-import random as rand
+# import firebase_admin 
+# from firebase_admin import credentials, firestore
+# import random as rand
 
-key = {
-  "type": "service_account",
-  "project_id": "projectintellegence",
-  "private_key_id": "432564a38a4749507cf07e6f2bd7ba29a7fa891f",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC0k6mvlSt5JtTV\nfxSdd6nG9Gfgcu323m/qk2CMM/2HrB0bzlWwm/mZ01zjN19mfJfwrjxgixJXd6aq\nlS0of3r1302QvAe7mI9tSIS33YuZBItIGHeZoPwZB2ayEjN0qTRzUInQvxmUYJu/\ndX7NBmCHsVCaoQjqfbvesiTtCrcyfwGI2vkuEGXyEvlNj6u8dP/VrrfYj1rtY8si\nvKdg7hmAvOI1HkHzWKFb1oOYbHhFOe2VfbqzNfbWTN4sv1vs2S/DV/CpCWJWS2+R\nrRPAEdqxJr46YKOn7oUwtLgG8rHGqnjqowrcw4uxvvlLE4cWkbm9nxu8lEMP9F6d\nnct6rvVdAgMBAAECggEAK1pAJM1VUJLICjGmS1/NPNy0i6hMBTbF+7VCOqbIuWfS\n3TgeTnZD6HBcHpjOqJZFDB1olW0ODD3Hn7CM1Oo2JQ1lW9goqxsnY/9DDbl8qFH0\n9mwZWqLRo1ipiRrhi6KL2xt82sbmZz8CZWbZ+HMNfcZOKbF7qIBjOEXgo6As90wr\nQZW9HdkaoHFU2fUcr7+zz6x664s2MKs+gZHlSbh5gy6/K1SBO4Zt7e9gBkU9JW/l\nEbbOZ3ODeVBUIpz88g+oAWYW2hiZg51KNzbUU3zlNKE3M35AlfAmXyQRO6C4bKEL\nTZjUssdA4NlQlXZ2yC+Y5zc2i3aeRXimUDcp5wzcQQKBgQDhbPKTtfL5BT9MGN1S\nM3atP8MbiVfrHKlwAa0y7jPD6iOzROZUIH+3dh7h2cuKg554SwuoWm++Y3OHOKjC\nnRE9kIW4O3fYSQ4phAO38wOG1vsKwCpepwFeNsPM7/9gbfgLizivMhGSvEqUaYbE\nuNsFNc/u3rBMk0RroTOw4EtoWQKBgQDNEYLTEvD/0pEkSPARzP9vp6aEMjhq1qjc\nwlwK298mknYhh7wRnkQ+I9lxS/+qQVikrUZNVuNlDILBzYJIwW/bRcIscyyrJHXl\n0kovBPlcIBgt4pRxIEivXf9cRa4aKuNODs8qTvaCaQmBkc6u7bOQRECVo0Pl48Me\ni1fQX6PUpQKBgQCzvWnBqx77vVpV87FsnIow45lO+Hi4h5b2LvAJnvJ5cNRcWUCJ\nrYwIHU/MZxsq631MjxHRf6J/nM598AhnfFNF0lk8p3YMZ1u6cH+CiWqzdfCfBtAB\nvomRtHr0ihwGqEhR9AUTdAmdBTM2GNoTOw2vntOXs8nAlN/GLbeIfZ7CqQKBgEIN\n3+wJb+OXefUMIXg6ZhUbFYIDgzS2zFG/sVI2HJ0aFD8cr7GlHyo89e+OoV3ACsOQ\npNKIqFqGOyAeCFdTJ6qjv7X9q2e9KNTMdeTLX18TX3Z4Q4Rk98S1LGoWb8wyAGHG\nV2izYqgDGXLI+qBSJMLVmVAZ9Ob6BIG0NKcEB4uZAoGAZ4gLV2OEx1P/M8avaG9f\nvyzuKhe5i7Ovsy8QT8Xg3Vc8OU4nA9lKANqkKGM7u1rcrCgctbY1PNn/ndRyzWXe\na64lwgfVNI0lMDTbmZI2AZ72+wLR0W9ZB18GunO3VBUHaMTVJbfStRlQytcH4SJJ\n3BbPG79rKMrVdwe1kiwbg2k=\n-----END PRIVATE KEY-----\n",
-  "client_email": "firebase-adminsdk-tsi24@projectintellegence.iam.gserviceaccount.com",
-  "client_id": "109548119434129631452",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-tsi24%40projectintellegence.iam.gserviceaccount.com",
-  "universe_domain": "googleapis.com"
-}
-cred = credentials.Certificate(key)
-firebase_admin.initialize_app(cred)
-# type of intelligence: {question: answer}
+# key = {
+#   "type": "service_account",
+#   "project_id": "projectintellegence",
+#   "private_key_id": "432564a38a4749507cf07e6f2bd7ba29a7fa891f",
+#   "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC0k6mvlSt5JtTV\nfxSdd6nG9Gfgcu323m/qk2CMM/2HrB0bzlWwm/mZ01zjN19mfJfwrjxgixJXd6aq\nlS0of3r1302QvAe7mI9tSIS33YuZBItIGHeZoPwZB2ayEjN0qTRzUInQvxmUYJu/\ndX7NBmCHsVCaoQjqfbvesiTtCrcyfwGI2vkuEGXyEvlNj6u8dP/VrrfYj1rtY8si\nvKdg7hmAvOI1HkHzWKFb1oOYbHhFOe2VfbqzNfbWTN4sv1vs2S/DV/CpCWJWS2+R\nrRPAEdqxJr46YKOn7oUwtLgG8rHGqnjqowrcw4uxvvlLE4cWkbm9nxu8lEMP9F6d\nnct6rvVdAgMBAAECggEAK1pAJM1VUJLICjGmS1/NPNy0i6hMBTbF+7VCOqbIuWfS\n3TgeTnZD6HBcHpjOqJZFDB1olW0ODD3Hn7CM1Oo2JQ1lW9goqxsnY/9DDbl8qFH0\n9mwZWqLRo1ipiRrhi6KL2xt82sbmZz8CZWbZ+HMNfcZOKbF7qIBjOEXgo6As90wr\nQZW9HdkaoHFU2fUcr7+zz6x664s2MKs+gZHlSbh5gy6/K1SBO4Zt7e9gBkU9JW/l\nEbbOZ3ODeVBUIpz88g+oAWYW2hiZg51KNzbUU3zlNKE3M35AlfAmXyQRO6C4bKEL\nTZjUssdA4NlQlXZ2yC+Y5zc2i3aeRXimUDcp5wzcQQKBgQDhbPKTtfL5BT9MGN1S\nM3atP8MbiVfrHKlwAa0y7jPD6iOzROZUIH+3dh7h2cuKg554SwuoWm++Y3OHOKjC\nnRE9kIW4O3fYSQ4phAO38wOG1vsKwCpepwFeNsPM7/9gbfgLizivMhGSvEqUaYbE\nuNsFNc/u3rBMk0RroTOw4EtoWQKBgQDNEYLTEvD/0pEkSPARzP9vp6aEMjhq1qjc\nwlwK298mknYhh7wRnkQ+I9lxS/+qQVikrUZNVuNlDILBzYJIwW/bRcIscyyrJHXl\n0kovBPlcIBgt4pRxIEivXf9cRa4aKuNODs8qTvaCaQmBkc6u7bOQRECVo0Pl48Me\ni1fQX6PUpQKBgQCzvWnBqx77vVpV87FsnIow45lO+Hi4h5b2LvAJnvJ5cNRcWUCJ\nrYwIHU/MZxsq631MjxHRf6J/nM598AhnfFNF0lk8p3YMZ1u6cH+CiWqzdfCfBtAB\nvomRtHr0ihwGqEhR9AUTdAmdBTM2GNoTOw2vntOXs8nAlN/GLbeIfZ7CqQKBgEIN\n3+wJb+OXefUMIXg6ZhUbFYIDgzS2zFG/sVI2HJ0aFD8cr7GlHyo89e+OoV3ACsOQ\npNKIqFqGOyAeCFdTJ6qjv7X9q2e9KNTMdeTLX18TX3Z4Q4Rk98S1LGoWb8wyAGHG\nV2izYqgDGXLI+qBSJMLVmVAZ9Ob6BIG0NKcEB4uZAoGAZ4gLV2OEx1P/M8avaG9f\nvyzuKhe5i7Ovsy8QT8Xg3Vc8OU4nA9lKANqkKGM7u1rcrCgctbY1PNn/ndRyzWXe\na64lwgfVNI0lMDTbmZI2AZ72+wLR0W9ZB18GunO3VBUHaMTVJbfStRlQytcH4SJJ\n3BbPG79rKMrVdwe1kiwbg2k=\n-----END PRIVATE KEY-----\n",
+#   "client_email": "firebase-adminsdk-tsi24@projectintellegence.iam.gserviceaccount.com",
+#   "client_id": "109548119434129631452",
+#   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+#   "token_uri": "https://oauth2.googleapis.com/token",
+#   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+#   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-tsi24%40projectintellegence.iam.gserviceaccount.com",
+#   "universe_domain": "googleapis.com"
+# }
+# cred = credentials.Certificate(key)
+# firebase_admin.initialize_app(cred)
+# # type of intelligence: {question: answer}
 
-db = firestore.client()
+# db = firestore.client()
 
-def generate_random_id():
-    return rand.randint(1, 99999)
+# def generate_random_id():
+#     return rand.randint(1, 99999)
     
 
-def upload(val):
-    id = generate_random_id()
-    db.collection('intell').document(str(id)).set(val)
+# def upload(val):
+#     id = generate_random_id()
+#     db.collection('intell').document(str(id)).set(val)
