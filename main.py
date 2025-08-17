@@ -304,7 +304,8 @@ def MIQ_by_D():
             string = f"<div class=question><h1>{str(Num)+ ". " + question}</h1>"
             string += "<div class = 'answers'>"
             
-            string += f"<label class='checkbox-container'><input type='radio' name='{key + str(pos)}' value='{1}'><span class='checkbox-placeholder'>{1}</span></label>"
+            for i in range(0, 2):
+                string += f"<label class='checkbox-container'><input type='radio' name='{key + str(pos)}' value='{i}'><span class='checkbox-placeholder'>{i}</span></label>"
             
             string += "</div></div>"
             String += string
