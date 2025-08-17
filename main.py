@@ -75,9 +75,125 @@ miq = {
         "Do you enjoy caring for pets, plants, or gardens?"
     ]
 }
-keys = list(miq.keys())
+keysc = list(miq.keys())
 
-scores = {}
+scoresc = {}
+
+scoresd = {}
+
+miq_d = {
+    "Байгалийн": [
+        "Би аливаа зүйлийг нийтлэг шинжээр нь ерөнхийлөн ангилах дуртай",
+        "Экологийн (байгаль орчны) асуудал миний хувьд чухал",
+        "Би явган эсвэл майхантай аялах маш дуртай",
+        "Ургамал тарьж арчлах, хүлэмжинд ажиллах дуртай",
+        "Би байгалийн цэвэр, бүрэн бүтэн байдлыг хадгалах, хамгаалах чухал гэж боддог",
+        "Юмсыг эрэмблэн, системчлэх нь надад ойлгомжтой байдаг.",
+        "Миний амьдралд амьтад маш чухал байр суурийг эзэлдэг",
+        "Би дахин боловсруулах үйл ажиллагааг маш чухал гэж боддог",
+        "Би биологи, ургамал болон амьтан судлах маш дуртай",
+        "Би гэрээс гадуур цагийг өнгөрүүлэх дуртай"
+    ],
+    "Хөгжмийн": [
+        "Би юмсыг хэв маяг, зүй тогтлыг таньж, ойлгохдоо сайн",
+        "Би дуу чимээг анхаарч, анзаарамтгай.",
+        "Би хөгжмийн хэмнэлээр хөдлөхдөө сайн.",
+        "Надад хөгжмийн зэмсгээр тоглох үргэлж сонирхолтой байсан",
+        "Яруу найргийн хөг хэмнэл миний сэтгэлийг татдаг",
+        "Би юмсийг толгой сүүл холбож санадаг.",
+        "Би радио, телевиз үзэж байхдаа төвлөрч чаддаггүй",
+        "Би олон төрлийн хөгжимд дуртай",
+        "Жүжигээс илүү мюзикл нь сонирхолтой",
+        "Би дууны үгсийг сайн мэддэг."
+    ],
+    "Логик": [
+        "Би эд зүйлсээ эмх цэгцтэй байлгадаг",
+        "Аливааг алхам алхамаар хийх нь маш чухал",
+        "Аливаа асуудлыг шийдлийг олох нь надад тийм ч хэцүү биш",
+        "Эмх замбараагүй хүмүүс миний бухимдлыг төрүүлдэг",
+        "Би цээжээр тооцоолон бодохдоо сайн",
+        "Сэтгэхүй, логик шаардсан тоглоом надад хөгжилтэй байдаг.",
+        "Би бүх зүйлийг тодорхой болгохоос нааш ямар ч ажлыг эхлүүлдэг",
+        "Зохион байгуулалт бол миний амжилтын үндэс",
+        "Компютерийн хүснэгт эсвэл мэдээллийн сан дээр ажиллах нь надад урамтай байдаг",
+        "Бүх зүйлс маш ойлгомжтой байх үед л би сэтгэл хангалуун байдаг, тийм биш бол сэтгэл дундуур"
+    ],
+    "Экстенциал": [
+        "Аливаа том зүйлд миний үүрэг юу гэдгийг олж харах нь чухал",
+        "Би амьдралын тухай яриа өрнүүлэх дуртай",
+        "Шашин шүтлэг бол миний хувьд чухал",
+        "Би урлагийн шилдэг бүтээлүүдийг үзэх дуртай",
+        "Тайван амрах, бясалгал хийх нь амьдралд хэрэгтэй.",
+        "Би байгалийн үзэсгэлэнт газруудаар аялах дуртай",
+        "Би эртний болон орчин үеийн философичдын номыг унших дуртай",
+        "Би үнэ цэнийг нь ойлгочихвол шинэ зүйлийг амархан сурдаг.",
+        "Би энэ ертөнц дээр өөр амьдрал байдаг болов уу гэж боддог.",
+        "Түүх болон эртний соёлыг судлах нь надад хэтийн зорилгоо тодорхойлоход тусалдаг"
+    ],
+    "Харилцааны": [
+        "Би бусадтай ярилцах, хамтрах, харилцах замаар суралцдаг.",
+        "Би олуулаа байх, олуулаа хамтрах дуртай.",
+        "Багаараа ажиллах нь надад илүү үр дүнтэй санагддаг",
+        "Чатын группуудэд байх надад сонирхолтой байдаг.",
+        "Улс төрд оролцох нь чухал",
+        "Зурагт болон радионы ярилцлагын шоунууд сонирхолтой.",
+        "Би бол багийн тоглогч.",
+        "Би ганцаараа ажиллах дургүй.",
+        "Дугуйлан болон хичээлээс гадуурх үйл ажиллагаанууд хөгжилтэй",
+        "Би нийгмийн асуудал, шалтгаанд анхаарлаа хандуулдаг"
+    ],
+    "Хөдөлгөөний": [
+        "Гараараа юм хийх дуртай",
+        "Хөдөлгөөнгүй удаан суух нь надад хэцүү байдаг",
+        "Надад явган алхах, багийн спорт, агаарт байх таалагддаг.",
+        "Би аман бусаар (дохио зангаа гэх мэт) харилцахыг илүүд үздэг.",
+        "Бие эрүүл байх нь оюун ухаан эрүүл байхад чухал.",
+        "Урлаг, гар урлал хийх нь хөгжилтэй, зугаатай байдаг.",
+        "Бүжгээр илэрхийлэх нь гоо сайхан.",
+        "Би багаж хэрэгсэлтэй ажиллах дуртай",
+        "Би идэвхитэй амьдралын хэв маягтай",
+        "Би хийж үзэж суралцдаг."
+    ],
+    "Үгийн": [
+        "Би бүх төрлийн материалуудыг унших дуртай",
+        "Тэмдэглэл хөтлөх нь надад ойлгох, санахад тусалдаг.",
+        "Би найзуудтайгаа тогтмол харилцаатай байдаг.",
+        "Өөрийн санаа бодлоо бусдад илэрхийлэх хялбар байдаг.",
+        "Би өдрийн тэмдэглэл хөтөлдөг",
+        "Үгийн сүлжээ, эвлүүлдэг тоглоомнууд хөгжилтэй.",
+        "Би бичиж байхдаа аз жаргалтай байдаг.",
+        "Би үгээр нааддаг тоглоомонд дуртай.",
+        "Гадаад хэл надад сонирхолтой санагддаг.",
+        "Би итгэл, мэтгэлцээнд оролцох дуртай"
+    ],
+    "Өөртөө чиглэсэн": [
+        "Би өөрийн ёс суртахууны итгэл үнэмшилээ сайн мэддэг.",
+        "Сэтгэлийг минь хөдөлгөсөн зүйлийг би хамгийн сайн сурдаг.",
+        "Шударга байдал бол надад чухал зүйл.",
+        "Миний хандлага суралцах аргад минь нөлөөлдөг",
+        "Нийгмийн шударга ёсны асуудал надад ч бас хамаатай.",
+        "Ганцаараа ажиллах нь багаараа ажиллахтай ижил үр бүтээлтэй байдаг",
+        "Аливаа зүйлийг хийхээсээ өмнө яагаад хийх ёстойгоо мэдэх хэрэгтэй.",
+        "Би итгэсэн зүйлдээ 100% хүчин чармайлт гаргадаг.",
+        "Би бусдын төлөө гэсэн үйл хэрэгт оролцохдоо дуртай байдаг.",
+        "Би буруу зүйлсийг залруулахын төлөө тэмцэх, оролцохдоо бэлэн байдаг"
+    ],
+    "Дүрслэх": [
+        "Би оюун санаандаа төсөөлөн бодож чаддаг",
+        "Өрөөгөө өөрчлөх нь надад таалагддаг",
+        "Би төрөл бүрийн медиа хэрэгсэл ашиглан бүтээл хийх дуртай",
+        "Би зураг, дүрслэлээр илэрхийлсэн зүйлсийг илүү сайн санадаг.",
+        "Би үзүүлбэрт урлагт маш их дуртай",
+        "Экселийн хүснэгт нь график, диаграм, хүснэгт ашиглахад үнэхээр гайхалтай.",
+        "Би хэмжээст эвлүүлдэг тоглоом тоглох маш сонирхолтой.",
+        "Хөгжмийн видео үзэх намайг сэргээж, урам зориг өгдөг",
+        "Би оюуны зураглалаар юмыг санаж чадна",
+        "Би газрын зураг, атлас, зураг төсөл уншихдаа сайн"
+    ]
+}
+
+
+keysd = list(miq_d.keys())
 
 
 
@@ -90,7 +206,7 @@ def MIQ_by_choi():
     if request.method == "POST":
         questions: dict[str, dict[str, int]] = {}
 
-        for key in keys:
+        for key in keysc:
             questions[key] = {}
             max_score = len(miq[key])*2
             score = max_score
@@ -107,19 +223,19 @@ def MIQ_by_choi():
                 else:
                     questions[key][miq[key][num]] = 0
             percentage = (score / max_score) * 100
-            scores[key] = round(percentage, 3)
+            scoresc[key] = round(percentage, 3)
 
-        tools.upload(questions)
-        for key in keys:
-            print(f"{key} intelligence: {scores[key]}%")
-        return redirect("/results")
+        tools.upload_c(questions, scoresc)
+        # for key in keysc:
+        #     print(f"{key} intelligence: {scoresc[key]}%")
+        return redirect("/resultsc")
 
 
                 
 
     String = ""
     Num = 0
-    for key in keys:
+    for key in keysc:
         questions = miq[key]
         
         for pos, question in enumerate(questions):
@@ -135,18 +251,93 @@ def MIQ_by_choi():
     return render_template("MIQ_by_Choi.html", innput=String)
 
 
-@app.route("/results")
+@app.route("/resultsc")
 def results():
     results = ""
-    for key in keys:
-        result = f"<div class='result-box'>{key} intelligence: {scores[key]}%</div>"
+    for key in keysc:
+        result = f"<div class='result-box'>{key} intelligence: {scoresc[key]}%</div>"
         results += result
 
     return render_template("results.html", result = results)
 
-@app.route("/download")
+
+@app.route("/dmiq", methods =['GET', 'POST'])
+def MIQ_by_D():
+
+    if request.method == "POST":
+        questions: dict[str, dict[str, int]] = {}
+
+        for key in keysd:
+            questions[key] = {}
+            score = 0
+            max_score = 10
+            
+            for num in range(len(miq_d[key])):
+                ans = request.form.get(key + str(num))
+                
+
+                if ans != None:
+                    ans = int(ans)
+                    score += ans 
+                    questions[key][miq_d[key][num]] = ans
+                else:
+                    questions[key][miq_d[key][num]] = 0
+
+            percentage = (score / max_score) * 100
+            scoresd[key] = round(percentage, 3)
+
+        tools.upload_d(questions, scoresd)
+        # for key in keysd:
+        #     print(f"{mid[key]} Ухаан: {scores[key]}%")
+        return redirect("/resultsd")
+
+
+                
+
+    String = ""
+    Num = 0
+    for key in keysd:
+        questions = miq_d[key]
+        
+        for pos, question in enumerate(questions):
+            Num += 1           
+            string = f"<div class=question><h1>{str(Num)+ ". " + question}</h1>"
+            string += "<div class = 'answers'>"
+            
+            string += f"<label class='checkbox-container'><input type='radio' name='{key + str(pos)}' value='{1}'><span class='checkbox-placeholder'>{1}</span></label>"
+            
+            string += "</div></div>"
+            String += string
+    
+    return render_template("MIQ_by_D.html", innput=String)
+
+@app.route("/resultsd")
+def resultsd():
+    results = ""
+    for key in keysd:
+        result = f"<div class='result-box'>{key} Ухаан: {scoresd[key]}%</div>"
+        results += result
+
+    return render_template("results.html", result = results)
+
+
+@app.route("/download1475")
 def download():
-    return send_file('MIQ_by_Choi.csv', as_attachment=True)
+    return send_file(
+        tools.get_users_c(),
+        as_attachment=True,
+        download_name="output.xlsx",
+        mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+@app.route("/download1476")
+def download2():
+    return send_file(
+        tools.get_users_d(),
+        as_attachment=True,
+        download_name="output.xlsx",
+        mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+
 
 @app.route('/google9f8b8aeb83c75bc6.html', methods=['GET'])
 def google():
@@ -187,6 +378,8 @@ def favicon():
 @app.route('/ads.txt')
 def ads_txt():
     return send_from_directory('static', 'ads.txt')
+
+
 
 if __name__ == "__main__":
     app.run()
